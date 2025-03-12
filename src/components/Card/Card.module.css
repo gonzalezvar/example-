@@ -1,0 +1,15 @@
+.card img{
+    max-height: 250px;
+    object-fit: contain;
+    margin:20px;
+    padding: 15px;
+    filter: drop-shadow(28px 15px 22px #000000);
+    transition: ease-in-out 0.2s;
+    /* border: 1px solid rgba(0, 0, 0, 0.167); */
+}
+
+.card img:hover{
+    transform: scale(1.2);
+    filter: drop-shadow(-13px -5px 0px #000000);
+    transition: ease-in 0.2s;
+}
