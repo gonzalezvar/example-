@@ -31,6 +31,7 @@ const Card = ({ id, name, image, changeName }) => {
                     /> :
                     <h5 className="card-title">{name}</h5>
                 }
+                <DetailCard {name,image,chageName}/>
                 <button onClick={editUser}>{showEditName ? "Confirmar cambio" : "Ir a modificar"}</button>
             </div>
         </div>
