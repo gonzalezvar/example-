@@ -1,18 +1,19 @@
-import { createContext, useContext, useReducer, useState } from 'react'
+import {   useReducer, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { initialState, appReducer } from './reducer/appReducer'
-import {MyContext} from './store/Context'
+
+import Title from './components/Title'
+import Card from './components/Card'
+import { useAppContext } from './store/AppContext'
 
 function App() {
-  const [store, dispatch] = useReducer(appReducer, initialState)
+
+  const { store, dispatch } = useAppContext()
 
   const onAddValue = () => {
-    dispatch({type:"addListValue",task:store.inputValue})
+    dispatch({ type: "addListValue", task: store.inputValue })
   }
-
-  const dataStore = useContext(MyContext)
 
 
   return (
@@ -33,10 +34,10 @@ function App() {
       </div>
 
       {/* entrada contralada */}
-      <input 
-        type="text"  
-        value={store.inputValue} 
-        onChange={(e)=>dispatch({type:"changeInput",value:e.target.value})}
+      <input
+        type="text"
+        value={store.inputValue}
+        onChange={(e) => dispatch({ type: "changeInput", value: e.target.value })}
       />
       <button onClick={onAddValue}>Añadir</button>
       <ul>
@@ -46,6 +47,18 @@ function App() {
           ))
         }
       </ul>
+
+      <Title />
+
+      {store.listCharacters.length > 0 ?
+
+        store.listCharacters.map(item => (
+          <Card key={item.id} name={item.name} />
+        ))
+
+
+        : <p>no hay personajes</p>
+      }
     </>
   )
 }
